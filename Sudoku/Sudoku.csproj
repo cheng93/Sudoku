@@ -4,8 +4,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{85181330-2EA8-42E5-AD1A-C80F8E7337B5}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{14E958EE-E06D-4EB5-AF01-1E4D2405E1A9}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Sudoku</RootNamespace>
     <AssemblyName>Sudoku</AssemblyName>
@@ -13,7 +13,6 @@
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,17 +41,17 @@
   <ItemGroup>
     <Compile Include="Board.cs" />
     <Compile Include="Factory\BoxFactory.cs" />
-    <Compile Include="Cell.cs" />
     <Compile Include="Factory\ColumnFactory.cs" />
-    <Compile Include="Logic.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Factory\RowFactory.cs" />
+    <Compile Include="Factory\UnitFactory.cs" />
+    <Compile Include="Logic.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Cell.cs" />
+    <Compile Include="Strategy\BaseSudokuStrategy.cs" />
     <Compile Include="Strategy\HiddenPairsStrategy.cs" />
     <Compile Include="Strategy\HiddenSinglesStrategy.cs" />
     <Compile Include="Strategy\HiddenTriplesStrategy.cs" />
     <Compile Include="Strategy\ISudokuStrategy.cs" />
-    <Compile Include="Strategy\BaseSudokuStrategy.cs" />
     <Compile Include="Strategy\NakedPairsStrategy.cs" />
     <Compile Include="Strategy\NakedQuadsStrategy.cs" />
     <Compile Include="Strategy\NakedTriplesStrategy.cs" />
@@ -61,10 +59,6 @@
     <Compile Include="Strategy\RemoveImpossibleStrategy.cs" />
     <Compile Include="Strategy\SolvedCellStrategy.cs" />
     <Compile Include="Unit.cs" />
-    <Compile Include="Factory\UnitFactory.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

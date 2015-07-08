@@ -55,7 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sudoku\Sudoku.csproj">
-      <Project>{85181330-2EA8-42E5-AD1A-C80F8E7337B5}</Project>
+      <Project>{14e958ee-e06d-4eb5-af01-1e4d2405e1a9}</Project>
       <Name>Sudoku</Name>
     </ProjectReference>
   </ItemGroup>

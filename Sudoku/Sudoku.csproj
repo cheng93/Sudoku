@@ -58,6 +58,7 @@
     <Compile Include="Strategy\PointingReductionStrategy.cs" />
     <Compile Include="Strategy\RemoveImpossibleStrategy.cs" />
     <Compile Include="Strategy\SolvedCellStrategy.cs" />
+    <Compile Include="Strategy\YWingStrategy.cs" />
     <Compile Include="Unit.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

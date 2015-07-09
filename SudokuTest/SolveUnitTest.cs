@@ -83,5 +83,14 @@ namespace SudokuTest
             board.Solve();
             Assert.AreEqual(true, board.Solved);
         }
+
+        [TestMethod]
+        public void TestYWing()
+        {
+
+            var board = new Board("900240000050690231020050090090700320002935607070002900069020073510079062207086009");
+            board.Solve();
+            Assert.AreEqual(true, board.Solved);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,21 +32,58 @@ namespace Sudoku.Strategy
         private bool BoxLineReduction(Unit box)
         {
             var output = false;
-            var values = new List<int>();
             foreach (var column in Board.Columns)
             {
-                if (column.Cells.Intersect(box.Cells).Any())
+                var intersect = column.Cells.Intersect(box.Cells).ToList();
+                if (intersect.Any())
                 {
-                    values.AddRange(GetBoxLineReductionValues(column));
+                    var values = GetBoxLineReductionValues(intersect, column);
+                    foreach (var value in values)
+                    {
+                        foreach (var cell in box.Cells.Where(c => !intersect.Contains(c)))
+                        {
+                            cell.RemovePotentialValue(value);
+                            Console.WriteLine("(BoxLine Reduction)({2})[{3}] Removed value: {0} from cell: {1}", value,
+                                cell.Name, box.Name, column.Name);
+                            output = true;
+                        }
+                    }
+                }
+            }
+            foreach (var row in Board.Columns)
+            {
+                var intersect = row.Cells.Intersect(box.Cells).ToList();
+                if (intersect.Any())
+                {
+                    var values = GetBoxLineReductionValues(intersect, row);
+                    foreach (var value in values)
+                    {
+                        foreach (var cell in box.Cells.Where(c => !intersect.Contains(c)))
+                        {
+                            cell.RemovePotentialValue(value);
+                            Console.WriteLine("(BoxLine Reduction)({2})[{3}] Removed value: {0} from cell: {1}", value,
+                                cell.Name, box.Name, row.Name);
+                            output = true;
+                        }
+                    }
                 }
             }
             return output;
         }
 
-        private IReadOnlyCollection<int> GetBoxLineReductionValues(Unit column)
+        private IReadOnlyCollection<int> GetBoxLineReductionValues(List<Cell> intersect, Unit columnOrRow)
         {
             var output = new List<int>();
 
+            for (int i = 1; i < 10; i++)
+            {
+                var intersectCount = intersect.Count(c => c.PotentialValues.Contains(i));
+                var unitCount = intersect.Count(c => c.PotentialValues.Contains(i));
+                if (intersectCount == unitCount && intersectCount > 0)
+                {
+                    output.Add(i);
+                }
+            }
             return output;
         }
     }

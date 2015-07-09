@@ -7,7 +7,7 @@ namespace Main
     {
         static void Main(string[] args)
         {
-            var board = new Board("900240000050690231020050090090700320002935607070002900069020073510079062207086009");
+            var board = new Board("016007803090800000870001260048000300650009082039000650060900020080002936924600510");
             board.Solve();
             Console.ReadLine();
         }

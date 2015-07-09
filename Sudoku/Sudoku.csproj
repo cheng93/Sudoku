@@ -48,6 +48,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="Strategy\BaseSudokuStrategy.cs" />
+    <Compile Include="Strategy\BoxLineReductionStrategy.cs" />
     <Compile Include="Strategy\HiddenPairsStrategy.cs" />
     <Compile Include="Strategy\HiddenSinglesStrategy.cs" />
     <Compile Include="Strategy\HiddenTriplesStrategy.cs" />

@@ -182,6 +182,10 @@ namespace Sudoku
                 {
                     boardChanged = true;
                 }
+                else if (Solve(new BoxLineReductionStrategy(this)))
+                {
+                    boardChanged = true;
+                }
                 else if (Solve(new YWingStrategy(this)))
                 {
                     boardChanged = true;

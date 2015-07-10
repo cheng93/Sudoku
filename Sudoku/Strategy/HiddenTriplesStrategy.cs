@@ -47,7 +47,7 @@ namespace Sudoku.Strategy
         {
             var output = false;
             var hiddenTripleCellValues = GetHiddenTripleValues(unit);
-            if (hiddenTripleCellValues.Count > 2)
+            if (hiddenTripleCellValues.Count % 3 == 0 && hiddenTripleCellValues.Count > 2)
             {
                 foreach (var cell in unit.Cells.Where(c => c.PotentialValues.Intersect(hiddenTripleCellValues).Any()))
                 {
@@ -107,7 +107,7 @@ namespace Sudoku.Strategy
                 }
             }
 
-            return new ReadOnlyCollection<int>(list);
+            return list;
         }
     }
 }

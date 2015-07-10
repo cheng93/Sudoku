@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sudoku.Strategy
 {
-    class BoxLineReductionStrategy : BaseSudokuStrategy
+    public class BoxLineReductionStrategy : BaseSudokuStrategy
     {
         public BoxLineReductionStrategy(Board board)
             : base(board)
@@ -40,7 +37,7 @@ namespace Sudoku.Strategy
                     var values = GetBoxLineReductionValues(intersect, column);
                     foreach (var value in values)
                     {
-                        foreach (var cell in box.Cells.Where(c => !intersect.Contains(c)))
+                        foreach (var cell in box.Cells.Where(c => !intersect.Contains(c) && c.PotentialValues.Contains(value)))
                         {
                             cell.RemovePotentialValue(value);
                             Console.WriteLine("(BoxLine Reduction)({2})[{3}] Removed value: {0} from cell: {1}", value,
@@ -50,7 +47,7 @@ namespace Sudoku.Strategy
                     }
                 }
             }
-            foreach (var row in Board.Columns)
+            foreach (var row in Board.Rows)
             {
                 var intersect = row.Cells.Intersect(box.Cells).ToList();
                 if (intersect.Any())
@@ -58,7 +55,7 @@ namespace Sudoku.Strategy
                     var values = GetBoxLineReductionValues(intersect, row);
                     foreach (var value in values)
                     {
-                        foreach (var cell in box.Cells.Where(c => !intersect.Contains(c)))
+                        foreach (var cell in box.Cells.Where(c => !intersect.Contains(c) && c.PotentialValues.Contains(value)))
                         {
                             cell.RemovePotentialValue(value);
                             Console.WriteLine("(BoxLine Reduction)({2})[{3}] Removed value: {0} from cell: {1}", value,
@@ -78,7 +75,7 @@ namespace Sudoku.Strategy
             for (int i = 1; i < 10; i++)
             {
                 var intersectCount = intersect.Count(c => c.PotentialValues.Contains(i));
-                var unitCount = intersect.Count(c => c.PotentialValues.Contains(i));
+                var unitCount = columnOrRow.Cells.Count(c => c.PotentialValues.Contains(i));
                 if (intersectCount == unitCount && intersectCount > 0)
                 {
                     output.Add(i);

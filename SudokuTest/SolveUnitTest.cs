@@ -85,6 +85,22 @@ namespace SudokuTest
         }
 
         [TestMethod]
+        public void TestPointingLineReduction()
+        {
+            var board = new Board("930050000200630095856002000003180570005020980080005000000800159508210004000560008");
+            board.Solve();
+            Assert.AreEqual(true, board.Solved);
+        }
+
+        [TestMethod]
+        public void TestBoxLineReduction()
+        {
+            var board = new Board("020943715904000600750000040500480000200000453400352000042000081005004260090208504");
+            board.Solve();
+            Assert.AreEqual(true, board.Solved);
+        }
+
+        [TestMethod]
         public void TestYWing()
         {
 

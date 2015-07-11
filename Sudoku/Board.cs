@@ -146,15 +146,15 @@ namespace Sudoku
                 iterations++;
                 boardChanged = false;
 
-                if (Solve(new RemoveImpossibleStrategy(this)))
-                {
-                    boardChanged = true;
-                }
                 if (Solve(new SolvedCellStrategy(this)))
                 {
                     boardChanged = true;
                 }
-                else if (Solve(new HiddenSinglesStrategy(this)))
+                if (Solve(new RemoveImpossibleStrategy(this)))
+                {
+                    boardChanged = true;
+                }
+                if (Solve(new HiddenSinglesStrategy(this)))
                 {
                     boardChanged = true;
                 }
@@ -183,6 +183,10 @@ namespace Sudoku
                     boardChanged = true;
                 }
                 else if (Solve(new BoxLineReductionStrategy(this)))
+                {
+                    boardChanged = true;
+                }
+                else if (Solve(new XWingStrategy(this)))
                 {
                     boardChanged = true;
                 }

@@ -27,15 +27,8 @@ namespace Sudoku.Strategy
         private bool XWing(int value)
         {
             var output = false;
-            var potentialXWingUnit = new List<Unit>();
+        
 
-            foreach (var column in Board.Columns)
-            {
-                if (column.Cells.Count(c => c.PotentialValues.Contains(value)) == 2)
-                {
-                    potentialXWingUnit.Add(column);
-                }
-            }
             return output;
         }
     }
